@@ -1,0 +1,84 @@
+body {
+  background-color: black;
+}
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.title {
+  top: 0;
+  z-index: 1;
+}
+.title img {
+  width: 13rem;
+}
+.title h1 {
+  text-align: center;
+  color: white;
+  font-size: 300%;
+  z-index: 1;
+  animation-name: fadein;
+  animation-duration: 2s;
+  -webkit-animation-name: fadein;
+  -webkit-animation-duration: 2s;
+}
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: inherit;
+  opacity: 0.3;
+}
+.video-container video {
+  width: 250vh;
+}
+hr {
+  width: 120%;
+  display: block;
+  border: none;
+  color: white;
+  height: 2px;
+  background: black;
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#fff), to(#000));
+  animation-name: comparse;
+  animation-duration: 1.5s;
+  -webkit-animation-name:comparse;
+  -webkit-animation-duration: 1.5s;
+  z-index: 1;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    padding-top: -1rem;
+    opacity: 0;
+  }
+  to {
+    padding-top: 0rem;
+    opacity: 1;
+  }
+}
+
+@keyframes comparse {
+  from {width: 1%;}
+  to {width: 120%;}
+}
+
+@-webkit-keyframes comparse {
+  from {width: 1%;}
+  to {width: 120%;}
+}
