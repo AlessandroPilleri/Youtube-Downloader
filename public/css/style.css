@@ -52,6 +52,9 @@ hr {
   -webkit-animation-duration: 1.5s;
   z-index: 1;
 }
+#url {
+  width: 100%;
+}
 
 @keyframes fadein {
   from {

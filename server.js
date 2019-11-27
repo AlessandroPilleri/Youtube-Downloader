@@ -1,33 +1,18 @@
 const fs = require('fs');
 const express = require('express');
 const app = express();
-const youtube = require('youtube-dl');
+const ytdl = require('ytdl-core');
 
 app.use(express.static('public'));
 app.listen(8080);
 
-app.get('/background', function (req, res) {
-
-})
-
-app.get('/video', function (req, res) {
-  // var url = req.body; // FIXME: video id from get params
-  var videoId = req.query.id;
-
-  var video = youtube('https://www.youtube.com/watch?v=' + videoId,
-    ['--format=18'],
-    { cwd: __dirname });
-
-  video.on('info', function (info) {
-    console.log('Download started');
-    console.log('filename: ' + info._filename);
-    console.log('size: ' + info.size);
-  });
-
-  video.on('end', function (info) {
-    console.log('Download ended');
-  })
-
-  video.pipe(fs.createWriteStream('video.mp4'));
-  res.send("OK");
-})
+app.get('/dl', (req, res) => {
+    let videoId = req.query.v;
+    console.log(videoId);
+    res.writeHead(200, {
+       'Content-Type': 'video/mp4',
+        'Content-Disposition': 'attachment; filename=' + videoId
+    });
+    ytdl('http://www.youtube.com/watch?v=' + videoId, { filter: (format) => format.container === 'mp4'})
+        .pipe(res)
+});
