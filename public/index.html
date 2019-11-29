@@ -18,14 +18,26 @@
         <h1><img src="./logo.png" alt="" align="middle">Downloader</h1>
         <hr>
         <div class="container">
-          <input id="url" type="text" name="" value="" placeholder="Write here Youtube video url">
-          <input id="submit" type="button" name="" value="Submit">
+          <div class="row">
+            <div class="col-12">
+              <input id="url" type="text" name="" value="" placeholder="Write here Youtube video url">
+            </div>
+            <div class="col-6">
+              <select name="type" id="type">
+                <option value="mp4">MP4</option>
+                <option value="mp3">MP3</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <input id="submit" type="button" name="" value="Submit">
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="video-container">
         <video autoplay loop muted>
-          <source src="costarica.mp4" type="video/mp4">
+          <source src="/bcg" type="video/mp4">
         </video>
       </div>
 

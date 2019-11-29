@@ -1,4 +1,23 @@
 let url = document.querySelector('#url');
+let type = document.querySelector('#type');
+
+// Cache refresh on page reload
+window.addEventListener('load', function(e) {
+
+  window.applicationCache.addEventListener('updateready', function(e) {
+    if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+      // Browser downloaded a new app cache.
+      // Swap it in and reload the page to get the new hotness.
+      window.applicationCache.swapCache();
+      if (confirm('A new version of this site is available. Load it?')) {
+        window.location.reload();
+      }
+    } else {
+      // Manifest didn't changed. Nothing new to server.
+    }
+  }, false);
+
+}, false);
 
 document.querySelector('#submit').addEventListener('click', () => {
 
@@ -6,10 +25,11 @@ document.querySelector('#submit').addEventListener('click', () => {
   console.log(params);
   let videoId = params[1];
   console.log(videoId);
+  console.log(type.value);
 
-  const fileStream = streamSaver.createWriteStream( 'video.mp4');
+  const fileStream = streamSaver.createWriteStream( 'video.' + type.value);
 
-  fetch('/dl?' + videoId).then(res => {
+  fetch('/dl?' + videoId + '&t=' + type.value).then(res => {
     const readableStream = res.body;
 
     // more optimized
